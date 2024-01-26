@@ -12,6 +12,9 @@ class List:
     self.head = head
     pass
   
+  def list_head(self):
+    return self.head
+  
   def push(self, node):
     if node != None and isinstance(node, Node):
       if self.head == None:
@@ -19,3 +22,25 @@ class List:
       else:
         node.next = self.head
         self.head = node
+    pass
+  
+def mostrar_lista(node):
+  if(node == None):
+    return
+
+  if(isinstance(node, Node)):
+    print(node.value)
+    mostrar_lista(node.next)
+  pass
+
+if __name__ == '__main__':
+  list = List()
+  mostrar_lista(list.list_head())
+  list.push(Node(1))
+  mostrar_lista(list.list_head())
+  list.push(Node(2))
+  mostrar_lista(list.list_head())
+  list.push(Node(3))
+  mostrar_lista(list.list_head())
+  list.push(Node(4))
+  mostrar_lista(list.list_head())
