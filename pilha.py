@@ -1,65 +1,78 @@
-# Pilha
+# Pilha (Stack)
 # LIFO
 
-class No:
-  def __init__(self, valor = None) -> None:
-    self.valor = valor
-    self.anterior = None
+class Node:
+  def __init__(self, id = None, value = None) -> None:
+    self.id = id
+    self.value = value
+    self.previous = None
     pass
 
-class Pilha:  
+  def __str__(self) -> str:
+    return str(self.id) + " " + str(self.value)
+
+class Stack:  
   def __init__(self) -> None:
-    self.topo = None
+    self.top = None
     pass
   
   # Mostra o elemento do topo da pilha sem remover
-  def top(self):
-    return self.topo
+  def stack_top(self):
+    return self.top
   
+  # Verifica pilha vazia
+  def is_empty(self):
+    return self.top == None
+
   # Remove o elemento do topo da pilha
   def pop(self):
-    if self.topo != None:
-      temp = self.topo
-      self.topo = self.topo.anterior
+    if not self.is_empty():
+      temp = self.top
+      self.top = self.top.previous
       return temp
     
-  def push(self, no):
-    if no != None and isinstance(no, No):
-      no.anterior = self.topo
-      self.topo = no
+  def push(self, node):
+    if isinstance(node, Node):
+      if self.is_empty():
+        self.top = node
+        return
+            
+      node.previous = self.top
+      self.top = node        
       
-def mostrar_pilha(no):
-  if no == None:
-    print('---')
-    return
-  else:
-    print(no.valor)
-    mostrar_pilha(no.anterior)
+  def print_stack(self):
+    if self.is_empty(): 
+      print("The stack is empty... :(")
+
+      node = self.top
+      while node != None:
+        print(node)
+        node = node.previous
     
 if __name__ == '__main__':
-  pilha = Pilha()
-  mostrar_pilha(pilha.top())
-  pilha.push(No(1))
-  mostrar_pilha(pilha.top())
-  pilha.push(No(2))
-  mostrar_pilha(pilha.top())
-  pilha.push(No(3))
-  mostrar_pilha(pilha.top())
-  pilha.push(No(4))
-  mostrar_pilha(pilha.top())
+  pilha = Stack()
+  pilha.print_stack()
+  pilha.push(Node(1, "João"))
+  pilha.print_stack()
+  pilha.push(Node(2, "Maria"))
+  pilha.print_stack()
+  pilha.push(Node(3, "José"))
+  pilha.print_stack()
+  pilha.push(Node(4, "Pedro"))
+  pilha.print_stack()
   pilha.pop()
-  mostrar_pilha(pilha.top())
+  pilha.print_stack()
   pilha.pop()
-  mostrar_pilha(pilha.top())
+  pilha.print_stack()
   pilha.pop()
-  mostrar_pilha(pilha.top())
+  pilha.print_stack()
   pilha.pop()
-  mostrar_pilha(pilha.top())
+  pilha.print_stack()
   pilha.pop()
-  mostrar_pilha(pilha.top())
+  pilha.print_stack()
   pilha.pop()
-  mostrar_pilha(pilha.top())
+  pilha.print_stack()
   pilha.pop()
-  mostrar_pilha(pilha.top())
+  pilha.print_stack()
   pilha.pop()
-  mostrar_pilha(pilha.top())
+  pilha.print_stack()
