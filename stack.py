@@ -43,11 +43,16 @@ class Stack:
   def print_stack(self):
     if self.is_empty(): 
       print("The stack is empty... :(")
-
-      node = self.top
-      while node != None:
-        print(node)
-        node = node.previous
+      return
+    
+    terminator = 0    
+    node = self.top
+    while node != None:
+      print(node)
+      node = node.previous
+      terminator = len(str(node)) if len(str(node)) > terminator else terminator
+    print(terminator*"-")
+    pass
     
 if __name__ == '__main__':
   pilha = Stack()
