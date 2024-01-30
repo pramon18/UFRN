@@ -12,8 +12,9 @@ class Node:
     return str(self.id) + " " + str(self.data)
   
 class List:
-  def __init__(self, head = None) -> None:
-    self.head = head
+  def __init__(self) -> None:
+    self.head = None
+    self.tail = None
     pass
   
   def is_empty(self):
@@ -23,13 +24,7 @@ class List:
     return self.head
   
   def list_tail(self):
-    if self.is_empty(): 
-      return None
-    
-    node = self.head
-    while node.next != None:
-      node = node.next
-    return node
+    return self.tail
   
   def find(self, id):
     if self.is_empty():
@@ -46,9 +41,10 @@ class List:
     if isinstance(node, Node):
       if self.is_empty():        
           self.head = node
+          self.tail = node
           return
-      tail = self.list_tail()
-      tail.next = node    
+      self.tail.next = node
+      self.tail = node
     pass
   
   def remove(self, id):
@@ -69,7 +65,7 @@ class List:
       return
       
     # Node está na cauda
-    if node == self.list_tail():
+    if node == self.tail:
       temp = self.head
       while temp.next != node:
         temp = temp.next
